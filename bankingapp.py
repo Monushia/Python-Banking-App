@@ -16,7 +16,7 @@ def finish_reg():
     all_accounts = os.listdir()
 
     if name == "" or age == "" or gender == "" or password == "":
-        notif.config(fg="red", text="All fields requried * ")
+        notif.config(fg="blue", text="All fields requried * ")
         return
 
     for name_check in all_accounts:
@@ -31,7 +31,7 @@ def finish_reg():
             new_file.write(gender + '\n')
             new_file.write('0')
             new_file.close()
-            notif.config(fg="green", text="Account has been created")
+            notif.config(fg="blue", text="Account has been created")
 
 def register():
     # Vars
@@ -186,7 +186,7 @@ def finish_withdraw():
     current_balance = details[4]
 
     if float(withdraw_amount.get()) >float(current_balance):
-        withdraw_notif,config(text='Insufficient Funds!', fg='red')
+        withdraw_notif.config(text='Insufficient Funds!', fg='red')
         return
     updated_balance = current_balance
     updated_balance = float(updated_balance) - float(withdraw_amount.get())
@@ -240,21 +240,21 @@ def login():
     Entry(login_screen, textvariable=temp_login_name).grid(row=1, column=1,padx=5)
     Entry(login_screen, textvariable=temp_login_password, show="*").grid(row=2, column=1, padx=5)
     #Button
-    Button(login_screen, text="Login", command=login_session, width=15,font = ('Calibri', 12)).grid(row=3,sticky=W,pady=5,padx=5)
+    Button(login_screen, text="Login", bg='light blue', command=login_session, width=15,font = ('Calibri', 12)).grid(row=3,sticky=N,pady=5,padx=5)
 
 
 # Image import
 img = Image.open('bank.png')
-img = img.resize((250, 250))
+img = img.resize((400, 400))
 img = ImageTk.PhotoImage(img)
 
 # Labels
-Label(master, text="Financial Trust Bank", font=('Calibri', 14)).grid(row=0, sticky=N, pady=10)
+Label(master, text="Financial Trust Bank", font=('Calibri', 20)).grid(row=0, sticky=N, pady=10)
 Label(master, text="Your money matters", font=('Calibri', 12)).grid(row=1, sticky=N)
 Label(master, image=img).grid(row=2, sticky=N, pady=15)
 
 # Buttons
-Button(master, text="Register", font=('Calibri', 12), width=20, command=register).grid(row=3, sticky=N)
-Button(master, text="Login", font=('Calibri', 12), width=20, command=login).grid(row=4, sticky=N, pady=10)
+Button(master, text="Register", font=('Calibri', 12), bg='light blue', width=20, command=register).grid(row=3, sticky=N)
+Button(master, text="Login", font=('Calibri', 12), bg='light blue', width=20, command=login).grid(row=4, sticky=N, pady=10)
 
 master.mainloop()
